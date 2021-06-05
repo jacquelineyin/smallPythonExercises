@@ -81,14 +81,24 @@ def calculate_amount(money):
     total = quarters_sum + dimes_sum + nickles_sum + pennies_sum
     return round(total, 2)
 
+    # """
+    # Intakes user's coins and checks to see if amount is sufficient
+    # and handles the situation accordingly
+
+    # Args:
+    #     coffee_type (String): Type of coffee (i.e. "espresso", "latte", or "cappuccino")
+    # """
+
 
 def process_coins(coffee_type):
     """
     Intakes user's coins and checks to see if amount is sufficient
-    and handles the situation accordingly
 
     Args:
         coffee_type (String): Type of coffee (i.e. "espresso", "latte", or "cappuccino")
+
+    Returns:
+        boolean: True if user gives sufficient amount of money for given coffee_type
     """
     print("Please insert coins.")
 
@@ -103,7 +113,7 @@ def process_coins(coffee_type):
         MONEY[coin] = int(input(f"How many {coin}?: "))
 
     sum = calculate_amount(MONEY)
-    print(sum)
+    return sum >= MENU[coffee_type]["cost"]
 
 
 def handle_coffee(coffee_type):
