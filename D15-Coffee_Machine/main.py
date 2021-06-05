@@ -35,6 +35,9 @@ money = 0
 
 
 def print_report():
+    """
+    Prints the amount of resources and money left in the machine
+    """
     print(f"Water: {resources['water']}ml")
     print(f"Milk: {resources['milk']}ml")
     print(f"Coffee: {resources['coffee']}g")
@@ -42,6 +45,14 @@ def print_report():
 
 
 def check_resources(coffee_type):
+    """Checks to see if machine's resources are sufficient to make given type of coffee
+
+    Args:
+        coffee_type (String): Type of coffee (i.e. "espresso", "latte", or "cappuccino")
+
+    Returns:
+        Object: {"has_enough_resources": boolean, "missing_resource": String or None} 
+    """
     needed_ingredients = MENU[coffee_type]["ingredients"]
     has_enough_resources = True
     missing_resources = []
@@ -50,10 +61,18 @@ def check_resources(coffee_type):
         if resources[resource] < needed_ingredients[resource]:
             return {"has_enough_resources": False, "missing_resource": resource}
 
-    return {"has_enough_resources": has_enough_resources}
+    return {"has_enough_resources": has_enough_resources, "missing_resource": None}
 
 
 def calculate_amount(money):
+    """Takes a dictionary of coins, and calculates the total sum
+
+    Args:
+        money (Dictionary): A dictionary object of coins with the values being the number of coin type
+
+    Returns:
+        float: total sum of the coin values, rounded to 2 decimal places
+    """
     quarters_sum = money["quarters"] * 0.25
     dimes_sum = money["dimes"] * 0.1
     nickles_sum = money["nickles"] * 0.05
