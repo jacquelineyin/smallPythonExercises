@@ -31,7 +31,7 @@ resources = {
 }
 
 
-money = 0
+money = 0.00
 
 
 def print_report():
@@ -55,7 +55,6 @@ def check_resources(coffee_type):
     """
     needed_ingredients = MENU[coffee_type]["ingredients"]
     has_enough_resources = True
-    missing_resources = []
 
     for resource in needed_ingredients:
         if resources[resource] < needed_ingredients[resource]:
@@ -81,14 +80,6 @@ def calculate_amount(money):
     total = quarters_sum + dimes_sum + nickles_sum + pennies_sum
     return round(total, 2)
 
-    # """
-    # Intakes user's coins and checks to see if amount is sufficient
-    # and handles the situation accordingly
-
-    # Args:
-    #     coffee_type (String): Type of coffee (i.e. "espresso", "latte", or "cappuccino")
-    # """
-
 
 def process_coins(coffee_type):
     """
@@ -113,7 +104,29 @@ def process_coins(coffee_type):
         MONEY[coin] = int(input(f"How many {coin}?: "))
 
     sum = calculate_amount(MONEY)
-    return sum >= MENU[coffee_type]["cost"]
+    return {"is_sufficient": sum >= MENU[coffee_type]["cost"], "total": sum}
+
+
+def handle_change(coffee_type, money_received):
+    cost = MENU[coffee_type]["cost"]
+
+    if money_received > cost:
+        change = round(money_received - cost, 2)
+        print(f"Here is ${change:.2f} dollars in change.")
+
+
+def complete_transaction(coffee_type, money_received):
+    global money
+
+    coffee_ingredients = MENU[coffee_type]["ingredients"]
+
+    for ingredient in coffee_ingredients:
+        resources[ingredient] -= coffee_ingredients[ingredient]
+
+    money = round(money + MENU[coffee_type]["cost"], 2)
+    handle_change(coffee_type, money_received)
+
+    print(f"Here is your {coffee_type}. Enjoy!")
 
 
 def handle_coffee(coffee_type):
@@ -131,16 +144,25 @@ def handle_coffee(coffee_type):
         status = check_resources(coffee_type)
     else:
         print("Invalid command. Please try again.")
+        return
 
     has_enough_resources = status["has_enough_resources"]
 
     if has_enough_resources:
-        # process coins
-        process_coins(coffee_type)
-        return
+        handle_transaction(coffee_type)
     else:
         missing_resource = status["missing_resource"]
-        print(f"Sorry there is not enough {missing_resource}.")
+        print(f"Sorry, there is not enough {missing_resource}.")
+
+
+def handle_transaction(coffee_type):
+    coins_received_info = process_coins(coffee_type)
+    is_sufficient = coins_received_info["is_sufficient"]
+
+    if (is_sufficient):
+        complete_transaction(coffee_type, coins_received_info["total"])
+    else:
+        print("Sorry, that's not enough money. Money refunded.")
 
 
 def coffee_machine():
@@ -160,7 +182,6 @@ def coffee_machine():
         else:
             handle_coffee(action)
 
-    return
 
-
+# Start Program
 coffee_machine()
