@@ -108,6 +108,12 @@ def process_coins(coffee_type):
 
 
 def handle_change(coffee_type, money_received):
+    """If we receive more money than the coffee_type costs, returns the change to the user
+
+    Args:
+        coffee_type (String): Type of coffee (i.e. "espresso", "latte", or "cappuccino")
+        money_received (float): Money received from user
+    """
     cost = MENU[coffee_type]["cost"]
 
     if money_received > cost:
@@ -116,6 +122,16 @@ def handle_change(coffee_type, money_received):
 
 
 def complete_transaction(coffee_type, money_received):
+    """
+    Deducts ingredients of coffee_type from machine's resources,
+    Gives user change for money_received as appropriate to the situation
+    Updates the money in the machine
+    And gives the completed drink back to the user
+
+    Args:
+        coffee_type ([type]): [description]
+        money_received ([type]): [description]
+    """
     global money
 
     coffee_ingredients = MENU[coffee_type]["ingredients"]
@@ -156,6 +172,13 @@ def handle_coffee(coffee_type):
 
 
 def handle_transaction(coffee_type):
+    """
+    Takes coffee_type and gets payment from users. 
+    Handles transaction depending on whether payment is sufficient or not
+
+    Args:
+        coffee_type (String): Type of coffee (i.e. "espresso", "latte", or "cappuccino")
+    """
     coins_received_info = process_coins(coffee_type)
     is_sufficient = coins_received_info["is_sufficient"]
 
