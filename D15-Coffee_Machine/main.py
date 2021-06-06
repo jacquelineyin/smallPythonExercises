@@ -196,7 +196,7 @@ def coffee_machine():
 
     while (is_on):
         action = input(
-            f"  What you would like? (espresso/latte/cappucino): ").lower()
+            f"  What you would like? (espresso/latte/cappuccino): ").lower()
 
         if action == "off":
             is_on = False
