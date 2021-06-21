@@ -8,5 +8,5 @@ A simple text-based coffee "software" that keeps track of the virtual coffee mac
   - Written using procedural programming
 
 ## To Run:
-In the [`/D15\ -\ COFFEE\ MACHINE/`](./) folder, run `python main.py`
+In the [`/d15-Coffee_Machine` (aka: this folder)](./) folder, run `python main.py`
 
