@@ -5,6 +5,7 @@ A simple text-based coffee "software" that keeps track of the virtual coffee mac
 - Notes:
   - Day 15 project from ["100 Days of Code - The Complete Python Pro Bootcamp"](https://www.udemy.com/course/100-days-of-code/).
   - More detailed requirements are in [`/docs/Coffee+Machine+Program+Requirements`](/docs/Coffee+Machine+Program+Requirements.pdf)
+  - Written using procedural programming
 
 ## To Run:
 In the [`/D15\ -\ COFFEE\ MACHINE/`](./) folder, run `python main.py`
