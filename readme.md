@@ -3,5 +3,5 @@
 - Larger projects for this course will be held in separate repos in the future and linked in this readme
 
 # Current Mini-Projects included in this repo are as follows:
-- *Complete* - [Day 15: "Coffee Machine" (Without object oriented programming)](/D15-Coffee_Machine)
+- *Complete* - [Day 15: "Coffee Machine" (Without object oriented programming)](/d15-Coffee_Machine)
 - *Complete* - [Day 16: "Coffee Machine" (OOP-version with given starter files)](/d16-OOP)
